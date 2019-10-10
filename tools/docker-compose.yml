@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  mysql_db:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      #MYSQL_DATABASE: testdb
+    networks:
+      dockernet:
+        ipv4_address: 172.20.0.2
+    ports:
+      - 3306:3306
+
+networks:
+  dockernet:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.20.0.0/16
